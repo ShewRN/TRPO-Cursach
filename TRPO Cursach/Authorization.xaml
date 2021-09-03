@@ -1,0 +1,19 @@
+﻿<Window x:Class="TRPO_Cursach.Authorization"
+xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TRPO_Cursach"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="438.495" Width="307.646" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button IsDefault="True" Content="Войти" Height="28" Width="116" Canvas.Left="584" Canvas.Top="242" Click="Auth_Enter" Margin="90,294,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Button Content="Регистрация" Height="28" Width="116" Canvas.Left="584" Canvas.Top="242" Click="Registration" Margin="90,342,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox Name="Auth_Login" materialDesign:HintAssist.Hint="Логин" TextWrapping="Wrap"  Width="141" Canvas.Left="617" Canvas.Top="53" Margin="77,150,0,0" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top"/>
+        <Label Content="         Добро пожаловать&#xD;&#xA;в магазин стройматериалов!" Canvas.Left="562" Canvas.Top="53" Margin="17,27,0,0" FontSize="18
+" FontWeight="Bold" Height="72" VerticalAlignment="Top" HorizontalAlignment="Left" Width="266"/>
+        <Label Content="Введите логин и пароль." Canvas.Left="562" Canvas.Top="53" Margin="34,95,0,0" FontSize="18" FontWeight="Bold" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="234"/>
+        <PasswordBox Name="Auth_Password" materialDesign:HintAssist.Hint="Пароль" HorizontalAlignment="Left" Margin="77,214,0,0" VerticalAlignment="Top" Width="141"/>
+    </Grid>
+</Window>

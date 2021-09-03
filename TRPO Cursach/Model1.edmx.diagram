@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5e98160cc3da440ab55d0ce804ca435a" Name="Diagram1">
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Basket" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Client" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Employee" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Order" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Product" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Product_Type" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Provider" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Role" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_Status" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_shrnModel.TRPO_User" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Bask__id_or__1EE485AA" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Bask__id_pr__1DF06171" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Bask__id_st__20CCCE1C" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Bask__id_us__1FD8A9E3" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Clie__id_us__1466F737" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Orde__id_cl__1A1FD08D" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Empl__id_us__174363E2" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Orde__id_em__1B13F4C6" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Prod__id_pr__10966653" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_Prod__id_pr__118A8A8C" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_shrnModel.FK__TRPO_User__id_ro__0BD1B136" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

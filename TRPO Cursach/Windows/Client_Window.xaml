@@ -1,0 +1,42 @@
+﻿<Window x:Class="TRPO_Cursach.Client_Window"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TRPO_Cursach"
+        mc:Ignorable="d"
+        Title="Магазин" Height="977" Width="1740" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid Name="Table_Product" HorizontalAlignment="Left" Height="709" AutoGenerateColumns="False" VerticalAlignment="Top" Width="780" FontSize="12" Margin="22,156,0,0" GridLinesVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding name}" Header="Наименование" Width="200" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding TRPO_Product_Type.name}" Header="Тип продукта" Width="180" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding TRPO_Provider.name}" Header="Поставщик" Width="180" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Цена" Width="100" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding quantity_warehouse}" Header="Количество&#xD;&#xA;  на складе" Width="120" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="Table_Basket" HorizontalAlignment="Left" Height="709" AutoGenerateColumns="False" VerticalAlignment="Top" Width="580" FontSize="12" Margin="1118,155,0,0" GridLinesVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding TRPO_Product.name}" Header="Наименование" Width="200" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding TRPO_Product.price}" Header="Цена" Width="110" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding quantity}" Header="Количество" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding total}" Header="Итог" Width="150" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Каталог товаров" Canvas.Left="562" Canvas.Top="53" Margin="275,91,0,0" FontSize="30" FontWeight="Bold" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="268"/>
+        <Label Content="Корзина" Canvas.Left="562" Canvas.Top="53" Margin="1340,91,0,0" FontSize="30" FontWeight="Bold" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="140"/>
+        <Label Content="Итого:" HorizontalAlignment="Left" Margin="1197,877,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <TextBlock Name="Result" HorizontalAlignment="Left" Margin="1304,882,0,0" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Top" Width="330" FontSize="30" TextDecorations="Underline"/>
+        <TextBox Name="C_Search" FontSize="16" FontWeight="Bold" materialDesign:HintAssist.Hint="Поиск по каталогу" TextWrapping="Wrap"  Margin="257,40,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="264" TextChanged="Search"/>
+        <TextBox Name="C_Quentity" FontSize="16" FontWeight="Bold" PreviewTextInput="Digit_Check" materialDesign:HintAssist.Hint="Количество" TextWrapping="Wrap"  Margin="904,380,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="158"/>
+        <Button Content="Добавить&#xD;&#xA;в корзину" ToolTip="Не забудьте внести нужное количество!" Height="50" Canvas.Left="630" Canvas.Top="349" Click="Basket_Insert" Margin="918,299,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="122"/>
+        <Button Content=" Изменить &#xD;&#xA;количество" Height="52" Canvas.Left="902" Canvas.Top="349" Click="Basket_Update" Margin="918,449,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="122"/>
+        <Button Content="   Удалить&#xD;&#xA;из корзины" Height="50" Canvas.Left="766" Canvas.Top="349" Click="Basket_Delete" Margin="918,563,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="122"/>
+        <Button Content="Сбросить&#xD;&#xA;  фильтр" Height="50" Canvas.Left="766" Canvas.Top="349" Click="Reset_Filter" Margin="918,101,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="122"/>
+        <Button Content="Оформить&#xD;&#xA;    заказ" Height="50" Canvas.Left="766" Canvas.Top="349" Click="Checkout" Margin="918,767,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="122"/>
+        <Button Content="История&#xD;&#xA; заказов" Height="50" Canvas.Left="766" Canvas.Top="349" Click="History" Margin="1340,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="122"/>
+        <ComboBox  Name="Cb_С_Product_Type" SelectionChanged="Cb_С_Product_Type_SelectionChanged" FontSize="16" FontWeight="Bold" materialDesign:HintAssist.Hint="Фильтр по типу товара" Canvas.Left="734" Canvas.Top="137" DisplayMemberPath="name" Margin="805,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="307"/>
+    </Grid>
+</Window>

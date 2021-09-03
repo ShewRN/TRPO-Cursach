@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище gr691_shrnModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TRPO_Basket">
+          <Key>
+            <PropertyRef Name="id_basket" />
+          </Key>
+          <Property Name="id_basket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_product" Type="int" Nullable="false" />
+          <Property Name="id_order" Type="int" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_Client">
+          <Key>
+            <PropertyRef Name="id_client" />
+          </Key>
+          <Property Name="id_client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="middle_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="contact_number" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_Employee">
+          <Key>
+            <PropertyRef Name="id_employee" />
+          </Key>
+          <Property Name="id_employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="middle_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="contact_number" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_Order">
+          <Key>
+            <PropertyRef Name="id_order" />
+          </Key>
+          <Property Name="id_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_client" Type="int" />
+          <Property Name="id_employee" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="price_order" Type="decimal" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="TRPO_Product">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_product_type" Type="int" Nullable="false" />
+          <Property Name="id_provider" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="quantity_warehouse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_Product_Type">
+          <Key>
+            <PropertyRef Name="id_product_type" />
+          </Key>
+          <Property Name="id_product_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_Provider">
+          <Key>
+            <PropertyRef Name="id_provider" />
+          </Key>
+          <Property Name="id_provider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="legal_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="contact_number" Type="nvarchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_Status">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRPO_User">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TRPO_Bask__id_or__1EE485AA">
+          <End Role="TRPO_Order" Type="Self.TRPO_Order" Multiplicity="0..1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Order">
+              <PropertyRef Name="id_order" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Bask__id_pr__1DF06171">
+          <End Role="TRPO_Product" Type="Self.TRPO_Product" Multiplicity="1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Bask__id_st__20CCCE1C">
+          <End Role="TRPO_Status" Type="Self.TRPO_Status" Multiplicity="1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Bask__id_us__1FD8A9E3">
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_User">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Clie__id_us__1466F737">
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="1" />
+          <End Role="TRPO_Client" Type="Self.TRPO_Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_User">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="TRPO_Client">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Empl__id_us__174363E2">
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="1" />
+          <End Role="TRPO_Employee" Type="Self.TRPO_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_User">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="TRPO_Employee">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Orde__id_cl__1A1FD08D">
+          <End Role="TRPO_Client" Type="Self.TRPO_Client" Multiplicity="0..1" />
+          <End Role="TRPO_Order" Type="Self.TRPO_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Client">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="TRPO_Order">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Orde__id_em__1B13F4C6">
+          <End Role="TRPO_Employee" Type="Self.TRPO_Employee" Multiplicity="0..1" />
+          <End Role="TRPO_Order" Type="Self.TRPO_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Employee">
+              <PropertyRef Name="id_employee" />
+            </Principal>
+            <Dependent Role="TRPO_Order">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Prod__id_pr__10966653">
+          <End Role="TRPO_Product_Type" Type="Self.TRPO_Product_Type" Multiplicity="1" />
+          <End Role="TRPO_Product" Type="Self.TRPO_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Product_Type">
+              <PropertyRef Name="id_product_type" />
+            </Principal>
+            <Dependent Role="TRPO_Product">
+              <PropertyRef Name="id_product_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Prod__id_pr__118A8A8C">
+          <End Role="TRPO_Provider" Type="Self.TRPO_Provider" Multiplicity="1" />
+          <End Role="TRPO_Product" Type="Self.TRPO_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Provider">
+              <PropertyRef Name="id_provider" />
+            </Principal>
+            <Dependent Role="TRPO_Product">
+              <PropertyRef Name="id_provider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_User__id_ro__0BD1B136">
+          <End Role="TRPO_Role" Type="Self.TRPO_Role" Multiplicity="1" />
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="TRPO_User">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище gr691_shrnModelContainer">
+          <EntitySet Name="TRPO_Basket" EntityType="Self.TRPO_Basket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Client" EntityType="Self.TRPO_Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Employee" EntityType="Self.TRPO_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Order" EntityType="Self.TRPO_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Product" EntityType="Self.TRPO_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Product_Type" EntityType="Self.TRPO_Product_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Provider" EntityType="Self.TRPO_Provider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Role" EntityType="Self.TRPO_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_Status" EntityType="Self.TRPO_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRPO_User" EntityType="Self.TRPO_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TRPO_Bask__id_or__1EE485AA" Association="Self.FK__TRPO_Bask__id_or__1EE485AA">
+            <End Role="TRPO_Order" EntitySet="TRPO_Order" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Bask__id_pr__1DF06171" Association="Self.FK__TRPO_Bask__id_pr__1DF06171">
+            <End Role="TRPO_Product" EntitySet="TRPO_Product" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Bask__id_st__20CCCE1C" Association="Self.FK__TRPO_Bask__id_st__20CCCE1C">
+            <End Role="TRPO_Status" EntitySet="TRPO_Status" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Bask__id_us__1FD8A9E3" Association="Self.FK__TRPO_Bask__id_us__1FD8A9E3">
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Clie__id_us__1466F737" Association="Self.FK__TRPO_Clie__id_us__1466F737">
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+            <End Role="TRPO_Client" EntitySet="TRPO_Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Empl__id_us__174363E2" Association="Self.FK__TRPO_Empl__id_us__174363E2">
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+            <End Role="TRPO_Employee" EntitySet="TRPO_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Orde__id_cl__1A1FD08D" Association="Self.FK__TRPO_Orde__id_cl__1A1FD08D">
+            <End Role="TRPO_Client" EntitySet="TRPO_Client" />
+            <End Role="TRPO_Order" EntitySet="TRPO_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Orde__id_em__1B13F4C6" Association="Self.FK__TRPO_Orde__id_em__1B13F4C6">
+            <End Role="TRPO_Employee" EntitySet="TRPO_Employee" />
+            <End Role="TRPO_Order" EntitySet="TRPO_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Prod__id_pr__10966653" Association="Self.FK__TRPO_Prod__id_pr__10966653">
+            <End Role="TRPO_Product_Type" EntitySet="TRPO_Product_Type" />
+            <End Role="TRPO_Product" EntitySet="TRPO_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Prod__id_pr__118A8A8C" Association="Self.FK__TRPO_Prod__id_pr__118A8A8C">
+            <End Role="TRPO_Provider" EntitySet="TRPO_Provider" />
+            <End Role="TRPO_Product" EntitySet="TRPO_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_User__id_ro__0BD1B136" Association="Self.FK__TRPO_User__id_ro__0BD1B136">
+            <End Role="TRPO_Role" EntitySet="TRPO_Role" />
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gr691_shrnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TRPO_Basket">
+          <Key>
+            <PropertyRef Name="id_basket" />
+          </Key>
+          <Property Name="id_basket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_product" Type="Int32" Nullable="false" />
+          <Property Name="id_order" Type="Int32" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TRPO_Order" Relationship="Self.FK__TRPO_Bask__id_or__1EE485AA" FromRole="TRPO_Basket" ToRole="TRPO_Order" />
+          <NavigationProperty Name="TRPO_Product" Relationship="Self.FK__TRPO_Bask__id_pr__1DF06171" FromRole="TRPO_Basket" ToRole="TRPO_Product" />
+          <NavigationProperty Name="TRPO_Status" Relationship="Self.FK__TRPO_Bask__id_st__20CCCE1C" FromRole="TRPO_Basket" ToRole="TRPO_Status" />
+          <NavigationProperty Name="TRPO_User" Relationship="Self.FK__TRPO_Bask__id_us__1FD8A9E3" FromRole="TRPO_Basket" ToRole="TRPO_User" />
+        </EntityType>
+        <EntityType Name="TRPO_Client">
+          <Key>
+            <PropertyRef Name="id_client" />
+          </Key>
+          <Property Name="id_client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contact_number" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TRPO_User" Relationship="Self.FK__TRPO_Clie__id_us__1466F737" FromRole="TRPO_Client" ToRole="TRPO_User" />
+          <NavigationProperty Name="TRPO_Order" Relationship="Self.FK__TRPO_Orde__id_cl__1A1FD08D" FromRole="TRPO_Client" ToRole="TRPO_Order" />
+        </EntityType>
+        <EntityType Name="TRPO_Employee">
+          <Key>
+            <PropertyRef Name="id_employee" />
+          </Key>
+          <Property Name="id_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact_number" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TRPO_User" Relationship="Self.FK__TRPO_Empl__id_us__174363E2" FromRole="TRPO_Employee" ToRole="TRPO_User" />
+          <NavigationProperty Name="TRPO_Order" Relationship="Self.FK__TRPO_Orde__id_em__1B13F4C6" FromRole="TRPO_Employee" ToRole="TRPO_Order" />
+        </EntityType>
+        <EntityType Name="TRPO_Order">
+          <Key>
+            <PropertyRef Name="id_order" />
+          </Key>
+          <Property Name="id_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_client" Type="Int32" />
+          <Property Name="id_employee" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="price_order" Type="Decimal" Precision="15" Scale="2" />
+          <NavigationProperty Name="TRPO_Basket" Relationship="Self.FK__TRPO_Bask__id_or__1EE485AA" FromRole="TRPO_Order" ToRole="TRPO_Basket" />
+          <NavigationProperty Name="TRPO_Client" Relationship="Self.FK__TRPO_Orde__id_cl__1A1FD08D" FromRole="TRPO_Order" ToRole="TRPO_Client" />
+          <NavigationProperty Name="TRPO_Employee" Relationship="Self.FK__TRPO_Orde__id_em__1B13F4C6" FromRole="TRPO_Order" ToRole="TRPO_Employee" />
+        </EntityType>
+        <EntityType Name="TRPO_Product">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_product_type" Type="Int32" Nullable="false" />
+          <Property Name="id_provider" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="quantity_warehouse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TRPO_Basket" Relationship="Self.FK__TRPO_Bask__id_pr__1DF06171" FromRole="TRPO_Product" ToRole="TRPO_Basket" />
+          <NavigationProperty Name="TRPO_Product_Type" Relationship="Self.FK__TRPO_Prod__id_pr__10966653" FromRole="TRPO_Product" ToRole="TRPO_Product_Type" />
+          <NavigationProperty Name="TRPO_Provider" Relationship="Self.FK__TRPO_Prod__id_pr__118A8A8C" FromRole="TRPO_Product" ToRole="TRPO_Provider" />
+        </EntityType>
+        <EntityType Name="TRPO_Product_Type">
+          <Key>
+            <PropertyRef Name="id_product_type" />
+          </Key>
+          <Property Name="id_product_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TRPO_Product" Relationship="Self.FK__TRPO_Prod__id_pr__10966653" FromRole="TRPO_Product_Type" ToRole="TRPO_Product" />
+        </EntityType>
+        <EntityType Name="TRPO_Provider">
+          <Key>
+            <PropertyRef Name="id_provider" />
+          </Key>
+          <Property Name="id_provider" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="legal_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contact_number" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TRPO_Product" Relationship="Self.FK__TRPO_Prod__id_pr__118A8A8C" FromRole="TRPO_Provider" ToRole="TRPO_Product" />
+        </EntityType>
+        <EntityType Name="TRPO_Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TRPO_User" Relationship="Self.FK__TRPO_User__id_ro__0BD1B136" FromRole="TRPO_Role" ToRole="TRPO_User" />
+        </EntityType>
+        <EntityType Name="TRPO_Status">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TRPO_Basket" Relationship="Self.FK__TRPO_Bask__id_st__20CCCE1C" FromRole="TRPO_Status" ToRole="TRPO_Basket" />
+        </EntityType>
+        <EntityType Name="TRPO_User">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TRPO_Basket" Relationship="Self.FK__TRPO_Bask__id_us__1FD8A9E3" FromRole="TRPO_User" ToRole="TRPO_Basket" />
+          <NavigationProperty Name="TRPO_Client" Relationship="Self.FK__TRPO_Clie__id_us__1466F737" FromRole="TRPO_User" ToRole="TRPO_Client" />
+          <NavigationProperty Name="TRPO_Employee" Relationship="Self.FK__TRPO_Empl__id_us__174363E2" FromRole="TRPO_User" ToRole="TRPO_Employee" />
+          <NavigationProperty Name="TRPO_Role" Relationship="Self.FK__TRPO_User__id_ro__0BD1B136" FromRole="TRPO_User" ToRole="TRPO_Role" />
+        </EntityType>
+        <Association Name="FK__TRPO_Bask__id_or__1EE485AA">
+          <End Role="TRPO_Order" Type="Self.TRPO_Order" Multiplicity="0..1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Order">
+              <PropertyRef Name="id_order" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Bask__id_pr__1DF06171">
+          <End Role="TRPO_Product" Type="Self.TRPO_Product" Multiplicity="1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Bask__id_st__20CCCE1C">
+          <End Role="TRPO_Status" Type="Self.TRPO_Status" Multiplicity="1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Bask__id_us__1FD8A9E3">
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="1" />
+          <End Role="TRPO_Basket" Type="Self.TRPO_Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_User">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="TRPO_Basket">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Clie__id_us__1466F737">
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="1" />
+          <End Role="TRPO_Client" Type="Self.TRPO_Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_User">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="TRPO_Client">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Orde__id_cl__1A1FD08D">
+          <End Role="TRPO_Client" Type="Self.TRPO_Client" Multiplicity="0..1" />
+          <End Role="TRPO_Order" Type="Self.TRPO_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Client">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="TRPO_Order">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Empl__id_us__174363E2">
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="1" />
+          <End Role="TRPO_Employee" Type="Self.TRPO_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_User">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="TRPO_Employee">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Orde__id_em__1B13F4C6">
+          <End Role="TRPO_Employee" Type="Self.TRPO_Employee" Multiplicity="0..1" />
+          <End Role="TRPO_Order" Type="Self.TRPO_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Employee">
+              <PropertyRef Name="id_employee" />
+            </Principal>
+            <Dependent Role="TRPO_Order">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Prod__id_pr__10966653">
+          <End Role="TRPO_Product_Type" Type="Self.TRPO_Product_Type" Multiplicity="1" />
+          <End Role="TRPO_Product" Type="Self.TRPO_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Product_Type">
+              <PropertyRef Name="id_product_type" />
+            </Principal>
+            <Dependent Role="TRPO_Product">
+              <PropertyRef Name="id_product_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_Prod__id_pr__118A8A8C">
+          <End Role="TRPO_Provider" Type="Self.TRPO_Provider" Multiplicity="1" />
+          <End Role="TRPO_Product" Type="Self.TRPO_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Provider">
+              <PropertyRef Name="id_provider" />
+            </Principal>
+            <Dependent Role="TRPO_Product">
+              <PropertyRef Name="id_provider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRPO_User__id_ro__0BD1B136">
+          <End Role="TRPO_Role" Type="Self.TRPO_Role" Multiplicity="1" />
+          <End Role="TRPO_User" Type="Self.TRPO_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRPO_Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="TRPO_User">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gr691_shrnEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TRPO_Basket" EntityType="Self.TRPO_Basket" />
+          <EntitySet Name="TRPO_Client" EntityType="Self.TRPO_Client" />
+          <EntitySet Name="TRPO_Employee" EntityType="Self.TRPO_Employee" />
+          <EntitySet Name="TRPO_Order" EntityType="Self.TRPO_Order" />
+          <EntitySet Name="TRPO_Product" EntityType="Self.TRPO_Product" />
+          <EntitySet Name="TRPO_Product_Type" EntityType="Self.TRPO_Product_Type" />
+          <EntitySet Name="TRPO_Provider" EntityType="Self.TRPO_Provider" />
+          <EntitySet Name="TRPO_Role" EntityType="Self.TRPO_Role" />
+          <EntitySet Name="TRPO_Status" EntityType="Self.TRPO_Status" />
+          <EntitySet Name="TRPO_User" EntityType="Self.TRPO_User" />
+          <AssociationSet Name="FK__TRPO_Bask__id_or__1EE485AA" Association="Self.FK__TRPO_Bask__id_or__1EE485AA">
+            <End Role="TRPO_Order" EntitySet="TRPO_Order" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Bask__id_pr__1DF06171" Association="Self.FK__TRPO_Bask__id_pr__1DF06171">
+            <End Role="TRPO_Product" EntitySet="TRPO_Product" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Bask__id_st__20CCCE1C" Association="Self.FK__TRPO_Bask__id_st__20CCCE1C">
+            <End Role="TRPO_Status" EntitySet="TRPO_Status" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Bask__id_us__1FD8A9E3" Association="Self.FK__TRPO_Bask__id_us__1FD8A9E3">
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+            <End Role="TRPO_Basket" EntitySet="TRPO_Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Clie__id_us__1466F737" Association="Self.FK__TRPO_Clie__id_us__1466F737">
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+            <End Role="TRPO_Client" EntitySet="TRPO_Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Orde__id_cl__1A1FD08D" Association="Self.FK__TRPO_Orde__id_cl__1A1FD08D">
+            <End Role="TRPO_Client" EntitySet="TRPO_Client" />
+            <End Role="TRPO_Order" EntitySet="TRPO_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Empl__id_us__174363E2" Association="Self.FK__TRPO_Empl__id_us__174363E2">
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+            <End Role="TRPO_Employee" EntitySet="TRPO_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Orde__id_em__1B13F4C6" Association="Self.FK__TRPO_Orde__id_em__1B13F4C6">
+            <End Role="TRPO_Employee" EntitySet="TRPO_Employee" />
+            <End Role="TRPO_Order" EntitySet="TRPO_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Prod__id_pr__10966653" Association="Self.FK__TRPO_Prod__id_pr__10966653">
+            <End Role="TRPO_Product_Type" EntitySet="TRPO_Product_Type" />
+            <End Role="TRPO_Product" EntitySet="TRPO_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_Prod__id_pr__118A8A8C" Association="Self.FK__TRPO_Prod__id_pr__118A8A8C">
+            <End Role="TRPO_Provider" EntitySet="TRPO_Provider" />
+            <End Role="TRPO_Product" EntitySet="TRPO_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRPO_User__id_ro__0BD1B136" Association="Self.FK__TRPO_User__id_ro__0BD1B136">
+            <End Role="TRPO_Role" EntitySet="TRPO_Role" />
+            <End Role="TRPO_User" EntitySet="TRPO_User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище gr691_shrnModelContainer" CdmEntityContainer="gr691_shrnEntities">
+          <EntitySetMapping Name="TRPO_Basket">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Basket">
+              <MappingFragment StoreEntitySet="TRPO_Basket">
+                <ScalarProperty Name="id_basket" ColumnName="id_basket" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Client">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Client">
+              <MappingFragment StoreEntitySet="TRPO_Client">
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contact_number" ColumnName="contact_number" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Employee">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Employee">
+              <MappingFragment StoreEntitySet="TRPO_Employee">
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="contact_number" ColumnName="contact_number" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Order">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Order">
+              <MappingFragment StoreEntitySet="TRPO_Order">
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="price_order" ColumnName="price_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Product">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Product">
+              <MappingFragment StoreEntitySet="TRPO_Product">
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_product_type" ColumnName="id_product_type" />
+                <ScalarProperty Name="id_provider" ColumnName="id_provider" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity_warehouse" ColumnName="quantity_warehouse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Product_Type">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Product_Type">
+              <MappingFragment StoreEntitySet="TRPO_Product_Type">
+                <ScalarProperty Name="id_product_type" ColumnName="id_product_type" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Provider">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Provider">
+              <MappingFragment StoreEntitySet="TRPO_Provider">
+                <ScalarProperty Name="id_provider" ColumnName="id_provider" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="legal_address" ColumnName="legal_address" />
+                <ScalarProperty Name="contact_number" ColumnName="contact_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Role">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Role">
+              <MappingFragment StoreEntitySet="TRPO_Role">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_Status">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_Status">
+              <MappingFragment StoreEntitySet="TRPO_Status">
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRPO_User">
+            <EntityTypeMapping TypeName="gr691_shrnModel.TRPO_User">
+              <MappingFragment StoreEntitySet="TRPO_User">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
